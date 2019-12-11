@@ -1,0 +1,6 @@
+[
+  {
+    "name": "node-mongo",
+    "imageUri": "740099846874.dkr.ecr.us-east-1.amazonaws.com/node-mongo:latest"
+  }
+]
