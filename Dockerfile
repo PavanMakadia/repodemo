@@ -14,7 +14,7 @@ RUN npm install
 COPY . /usr/src/node-mongo
 
 # Expose ports
-EXPOSE 3000 
+EXPOSE 9000 
 
 # Run Command
 CMD ["node", "server.js"]
