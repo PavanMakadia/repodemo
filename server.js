@@ -15,6 +15,11 @@ app.get('/', function (req, res) {
 	res.send("Hello DevOps !");
 });
 
+
+
+
+
+
 app.get('/check/connection', function (req, res) {
 	var ip = req.connection.remoteAddress;
 	ip = ip.split(':')[3];
