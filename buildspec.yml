@@ -18,3 +18,45 @@ phases:
       - printf '[{"name":"node-mongo","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
+---
+version: 0.2
+
+phases:
+  pre_build: 
+    commands: 
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=740099846874.dkr.ecr.us-east-1.amazonaws.com/node-mongo
+      - IMAGE_TAG=v1
+
+  build:
+    commands:
+      - docker build -t $REPOSITORY_URI .
+  post_build:
+    commands:
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - printf '[{"name":"node-mongo","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
+---
+version: 0.2
+
+phases:
+  pre_build: 
+    commands: 
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=740099846874.dkr.ecr.us-east-1.amazonaws.com/node-mongo
+      - IMAGE_TAG=v1
+
+  build:
+    commands:
+      - docker build -t $REPOSITORY_URI .
+  post_build:
+    commands:
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - printf '[{"name":"node-mongo","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
